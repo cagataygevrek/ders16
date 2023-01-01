@@ -1,11 +1,17 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../redux/todoSlice";
 
 const TodoEklemeFormu = () => {
   const [value, setValue] = useState("");
+  const dispatch = useDispatch();
 
   const onSubmit = (event) => {
-    event.preventDefault();
-    console.log("user entered: " + value);
+    event.preventDefault(); //tarayıcı yeniden sayfayı çalıştırmasın..
+
+    if (value) {
+      dispatch(addTodo({ title: value }));
+    }
   };
 
   return (
